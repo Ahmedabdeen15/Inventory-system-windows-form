@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inventory.model
+namespace Inventory.data
 {
     [Table("items")]
     class Item

@@ -1,4 +1,4 @@
-using Inventory.model;
+using Inventory.data;
 
 namespace Inventory
 {
