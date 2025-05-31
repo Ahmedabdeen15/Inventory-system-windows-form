@@ -57,6 +57,9 @@
             createToolStripMenuItem6 = new ToolStripMenuItem();
             updateToolStripMenuItem6 = new ToolStripMenuItem();
             transferToolStripMenuItem = new ToolStripMenuItem();
+            employeesToolStripMenuItem = new ToolStripMenuItem();
+            createToolStripMenuItem7 = new ToolStripMenuItem();
+            updateToolStripMenuItem7 = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -107,7 +110,7 @@
             // 
             menuStrip1.BackColor = SystemColors.GradientInactiveCaption;
             menuStrip1.Font = new Font("Rockwell", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, warehouseToolStripMenuItem, itemsToolStripMenuItem, unitsToolStripMenuItem, supplierToolStripMenuItem, customerToolStripMenuItem, permitsToolStripMenuItem, transferToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, warehouseToolStripMenuItem, itemsToolStripMenuItem, unitsToolStripMenuItem, supplierToolStripMenuItem, customerToolStripMenuItem, permitsToolStripMenuItem, transferToolStripMenuItem, employeesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(8, 3, 0, 3);
@@ -132,6 +135,7 @@
             createToolStripMenuItem.Name = "createToolStripMenuItem";
             createToolStripMenuItem.Size = new Size(118, 22);
             createToolStripMenuItem.Text = "create";
+            createToolStripMenuItem.Click += createToolStripMenuItem_Click;
             // 
             // updateToolStripMenuItem
             // 
@@ -266,6 +270,27 @@
             transferToolStripMenuItem.Size = new Size(75, 19);
             transferToolStripMenuItem.Text = "&Transfer";
             // 
+            // employeesToolStripMenuItem
+            // 
+            employeesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem7, updateToolStripMenuItem7 });
+            employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
+            employeesToolStripMenuItem.Size = new Size(90, 19);
+            employeesToolStripMenuItem.Text = "&Employees";
+            // 
+            // createToolStripMenuItem7
+            // 
+            createToolStripMenuItem7.Name = "createToolStripMenuItem7";
+            createToolStripMenuItem7.Size = new Size(180, 22);
+            createToolStripMenuItem7.Text = "create";
+            createToolStripMenuItem7.Click += createToolStripMenuItem7_Click;
+            // 
+            // updateToolStripMenuItem7
+            // 
+            updateToolStripMenuItem7.Name = "updateToolStripMenuItem7";
+            updateToolStripMenuItem7.Size = new Size(180, 22);
+            updateToolStripMenuItem7.Text = "update";
+            updateToolStripMenuItem7.Click += updateToolStripMenuItem7_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
@@ -321,5 +346,8 @@
         private ToolStripMenuItem createToolStripMenuItem6;
         private ToolStripMenuItem updateToolStripMenuItem6;
         private ToolStripMenuItem transferToolStripMenuItem;
+        private ToolStripMenuItem employeesToolStripMenuItem;
+        private ToolStripMenuItem createToolStripMenuItem7;
+        private ToolStripMenuItem updateToolStripMenuItem7;
     }
 }
