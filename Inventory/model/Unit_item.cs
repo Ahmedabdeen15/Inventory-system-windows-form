@@ -11,7 +11,9 @@ namespace Inventory.model
     [Table("Unit_items")]
     class Unit_item
     {
+        [Key]
         public Unit unit {  get; set; }
+        [Key]
         public Item item { get; set; }
     }
 }

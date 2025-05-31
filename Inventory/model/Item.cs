@@ -17,5 +17,7 @@ namespace Inventory.model
         public string Name { get; set; }
         [Required]
         public string ItemCode { get; set; }
+
+        public virtual ICollection<Unit> units { get; set; }
     }
 }

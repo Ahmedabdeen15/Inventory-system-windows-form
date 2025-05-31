@@ -15,5 +15,7 @@ namespace Inventory.model
         public int UnitId { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public ICollection<Item> items { get; set; }
     }
 }

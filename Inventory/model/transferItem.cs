@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Inventory.model
 {
-    [Table("transfer_Item")]
+    [Table("transfer_Items")]
     class transferItem
     {
         [Key]

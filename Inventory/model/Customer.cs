@@ -27,5 +27,4 @@ namespace Inventory.model
         }
     }
 
-}
-}
+
