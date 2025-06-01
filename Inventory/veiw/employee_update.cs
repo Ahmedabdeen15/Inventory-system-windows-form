@@ -51,7 +51,6 @@ namespace Inventory.veiw
                 string name = textBox1.Text.Trim();
                 employeeControl.updateEmployee(empId, name);
                 MessageBox.Show("Employee updated successfully.");
-                updateComboBox();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
