@@ -11,6 +11,10 @@ namespace Inventory.data
     [Table("items")]
     class Item
     {
+        public Item()
+        {
+            units = new HashSet<Unit>();
+        }
         [Key]
         public int ItemId { get; set; }
         [Required]
@@ -18,6 +22,7 @@ namespace Inventory.data
         [Required]
         public string ItemCode { get; set; }
 
-        public virtual ICollection<Unit> units { get; set; }
+        public ICollection<Unit> units { get; set; }
+
     }
 }
