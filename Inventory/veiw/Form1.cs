@@ -10,6 +10,7 @@ namespace Inventory
         public Form1()
         {
             InitializeComponent();
+            this.MainMenuStrip = menuStrip1;
             dbContext = new InventoryDbContext();
         }
 
@@ -29,6 +30,66 @@ namespace Inventory
         {
             employee_update employee_update = new employee_update(dbContext);
             var confirmResult = employee_update.ShowDialog();
+        }
+
+        private void createToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ItemInsert itemInsert = new ItemInsert(dbContext);
+            var confirmResult = itemInsert.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ItemUpdate itemUpdate = new ItemUpdate(dbContext);
+            var confirmResult = itemUpdate.ShowDialog();
+        }
+        private void removeUnitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UnitItemRemove unitItemRemove = new UnitItemRemove(dbContext);
+            var confirmResult = unitItemRemove.ShowDialog();
+
+        }
+
+        private void createToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            UnitInsert unitInsert = new UnitInsert(dbContext);
+            var confirmResult = unitInsert.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            UnitUpdate unitUpdate = new UnitUpdate(dbContext);
+            var confirmResult = unitUpdate.ShowDialog();
+        }
+
+        private void addUnitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UnitItemAdd unitItem = new UnitItemAdd(dbContext);
+            var confirmResult = unitItem.ShowDialog();
+        }
+
+        private void createToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            SupplierAdd supplierAdd = new SupplierAdd(dbContext);
+            var confirmResult = supplierAdd.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            SupplierUpdate supplierUpdate = new SupplierUpdate(dbContext);
+            var confirmResult = supplierUpdate.ShowDialog();
+        }
+
+        private void createToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            CustomerInsert customerInsert = new CustomerInsert(dbContext);
+            var confirmResult = customerInsert.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            CustomerUpdate customerUpdate = new CustomerUpdate(dbContext);
+            var confirmResult = customerUpdate.ShowDialog();
         }
     }
 }

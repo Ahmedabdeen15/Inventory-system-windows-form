@@ -40,6 +40,8 @@
             itemsToolStripMenuItem = new ToolStripMenuItem();
             createToolStripMenuItem1 = new ToolStripMenuItem();
             updateToolStripMenuItem1 = new ToolStripMenuItem();
+            addUnitToolStripMenuItem = new ToolStripMenuItem();
+            removeUnitToolStripMenuItem = new ToolStripMenuItem();
             unitsToolStripMenuItem = new ToolStripMenuItem();
             createToolStripMenuItem2 = new ToolStripMenuItem();
             updateToolStripMenuItem2 = new ToolStripMenuItem();
@@ -68,11 +70,14 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(756, 146);
-            tabControl1.Margin = new Padding(4);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.ImeMode = ImeMode.NoControl;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Margin = new Padding(4, 30, 4, 4);
+            tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(257, 140);
+            tabControl1.Size = new Size(1041, 531);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -81,7 +86,7 @@
             tabPage1.Margin = new Padding(4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(4);
-            tabPage1.Size = new Size(249, 106);
+            tabPage1.Size = new Size(1033, 497);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -92,7 +97,7 @@
             tabPage2.Margin = new Padding(4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(4);
-            tabPage2.Size = new Size(249, 112);
+            tabPage2.Size = new Size(1033, 503);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -111,6 +116,7 @@
             menuStrip1.BackColor = SystemColors.GradientInactiveCaption;
             menuStrip1.Font = new Font("Rockwell", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, warehouseToolStripMenuItem, itemsToolStripMenuItem, unitsToolStripMenuItem, supplierToolStripMenuItem, customerToolStripMenuItem, permitsToolStripMenuItem, transferToolStripMenuItem, employeesToolStripMenuItem });
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(8, 3, 0, 3);
@@ -145,7 +151,7 @@
             // 
             // itemsToolStripMenuItem
             // 
-            itemsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem1, updateToolStripMenuItem1 });
+            itemsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem1, updateToolStripMenuItem1, addUnitToolStripMenuItem, removeUnitToolStripMenuItem });
             itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             itemsToolStripMenuItem.Size = new Size(56, 19);
             itemsToolStripMenuItem.Text = "&Items";
@@ -153,14 +159,30 @@
             // createToolStripMenuItem1
             // 
             createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            createToolStripMenuItem1.Size = new Size(118, 22);
+            createToolStripMenuItem1.Size = new Size(150, 22);
             createToolStripMenuItem1.Text = "create";
+            createToolStripMenuItem1.Click += createToolStripMenuItem1_Click;
             // 
             // updateToolStripMenuItem1
             // 
             updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
-            updateToolStripMenuItem1.Size = new Size(118, 22);
+            updateToolStripMenuItem1.Size = new Size(150, 22);
             updateToolStripMenuItem1.Text = "update";
+            updateToolStripMenuItem1.Click += updateToolStripMenuItem1_Click;
+            // 
+            // addUnitToolStripMenuItem
+            // 
+            addUnitToolStripMenuItem.Name = "addUnitToolStripMenuItem";
+            addUnitToolStripMenuItem.Size = new Size(150, 22);
+            addUnitToolStripMenuItem.Text = "add unit";
+            addUnitToolStripMenuItem.Click += addUnitToolStripMenuItem_Click;
+            // 
+            // removeUnitToolStripMenuItem
+            // 
+            removeUnitToolStripMenuItem.Name = "removeUnitToolStripMenuItem";
+            removeUnitToolStripMenuItem.Size = new Size(150, 22);
+            removeUnitToolStripMenuItem.Text = "remove unit";
+            removeUnitToolStripMenuItem.Click += removeUnitToolStripMenuItem_Click;
             // 
             // unitsToolStripMenuItem
             // 
@@ -174,12 +196,14 @@
             createToolStripMenuItem2.Name = "createToolStripMenuItem2";
             createToolStripMenuItem2.Size = new Size(118, 22);
             createToolStripMenuItem2.Text = "create";
+            createToolStripMenuItem2.Click += createToolStripMenuItem2_Click;
             // 
             // updateToolStripMenuItem2
             // 
             updateToolStripMenuItem2.Name = "updateToolStripMenuItem2";
             updateToolStripMenuItem2.Size = new Size(118, 22);
             updateToolStripMenuItem2.Text = "update";
+            updateToolStripMenuItem2.Click += updateToolStripMenuItem2_Click;
             // 
             // supplierToolStripMenuItem
             // 
@@ -193,12 +217,14 @@
             createToolStripMenuItem3.Name = "createToolStripMenuItem3";
             createToolStripMenuItem3.Size = new Size(118, 22);
             createToolStripMenuItem3.Text = "create";
+            createToolStripMenuItem3.Click += createToolStripMenuItem3_Click;
             // 
             // updateToolStripMenuItem3
             // 
             updateToolStripMenuItem3.Name = "updateToolStripMenuItem3";
             updateToolStripMenuItem3.Size = new Size(118, 22);
             updateToolStripMenuItem3.Text = "update";
+            updateToolStripMenuItem3.Click += updateToolStripMenuItem3_Click;
             // 
             // customerToolStripMenuItem
             // 
@@ -210,14 +236,16 @@
             // createToolStripMenuItem4
             // 
             createToolStripMenuItem4.Name = "createToolStripMenuItem4";
-            createToolStripMenuItem4.Size = new Size(118, 22);
+            createToolStripMenuItem4.Size = new Size(180, 22);
             createToolStripMenuItem4.Text = "create";
+            createToolStripMenuItem4.Click += createToolStripMenuItem4_Click;
             // 
             // updateToolStripMenuItem4
             // 
             updateToolStripMenuItem4.Name = "updateToolStripMenuItem4";
-            updateToolStripMenuItem4.Size = new Size(118, 22);
+            updateToolStripMenuItem4.Size = new Size(180, 22);
             updateToolStripMenuItem4.Text = "update";
+            updateToolStripMenuItem4.Click += updateToolStripMenuItem4_Click;
             // 
             // permitsToolStripMenuItem
             // 
@@ -280,14 +308,14 @@
             // createToolStripMenuItem7
             // 
             createToolStripMenuItem7.Name = "createToolStripMenuItem7";
-            createToolStripMenuItem7.Size = new Size(180, 22);
+            createToolStripMenuItem7.Size = new Size(118, 22);
             createToolStripMenuItem7.Text = "create";
             createToolStripMenuItem7.Click += createToolStripMenuItem7_Click;
             // 
             // updateToolStripMenuItem7
             // 
             updateToolStripMenuItem7.Name = "updateToolStripMenuItem7";
-            updateToolStripMenuItem7.Size = new Size(180, 22);
+            updateToolStripMenuItem7.Size = new Size(118, 22);
             updateToolStripMenuItem7.Text = "update";
             updateToolStripMenuItem7.Click += updateToolStripMenuItem7_Click;
             // 
@@ -349,5 +377,7 @@
         private ToolStripMenuItem employeesToolStripMenuItem;
         private ToolStripMenuItem createToolStripMenuItem7;
         private ToolStripMenuItem updateToolStripMenuItem7;
+        private ToolStripMenuItem addUnitToolStripMenuItem;
+        private ToolStripMenuItem removeUnitToolStripMenuItem;
     }
 }
