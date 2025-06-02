@@ -15,14 +15,12 @@ namespace Inventory.veiw
     internal partial class UnitItemRemove : Form
     {
         InventoryDbContext dbContext;
-        UnitController unitController;
         ItemController itemController;
 
         public UnitItemRemove(InventoryDbContext dbContext)
         {
             InitializeComponent();
             this.dbContext = dbContext;
-            unitController = new UnitController(dbContext);
             itemController = new ItemController(dbContext);
             UpdateComboBox1();
         }
