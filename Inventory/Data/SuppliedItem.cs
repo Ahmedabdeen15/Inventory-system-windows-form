@@ -20,15 +20,16 @@ namespace Inventory.data
 
         public DateTime ExpirationDate { get; set; }
 
+        public int expirationDays { get; set; }
         [NotMapped]
         public int ExpirationDays {
             set {
                 ExpirationDate = ProudctionDate.AddDays(value);
-                ExpirationDays = value;
+                expirationDays = value;
             }
             get
             {
-                return ExpirationDays;
+                return expirationDays;
             }
         }
 
@@ -36,6 +37,8 @@ namespace Inventory.data
 
 
         public Unit Unit { get; set; }
+
+        public WarehouseItem WarehouseItem { get; set; }
 
         public supplyPermit supplyPermit { get; set; }
 

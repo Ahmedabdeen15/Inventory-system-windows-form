@@ -22,5 +22,7 @@ namespace Inventory.data
 
         public Warehouse Warehouse { get; set; }
 
+        public List<SuppliedItem> suppliedItems { get; set; }
+
     }
 }
