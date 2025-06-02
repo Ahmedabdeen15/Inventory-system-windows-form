@@ -70,26 +70,25 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Dock = DockStyle.Fill;
             tabControl1.ImeMode = ImeMode.NoControl;
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Location = new Point(0, 25);
             tabControl1.Margin = new Padding(4, 30, 4, 4);
             tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1041, 531);
+            tabControl1.Size = new Size(1041, 493);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = Color.Gainsboro;
             tabPage1.Location = new Point(4, 30);
             tabPage1.Margin = new Padding(4);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(4);
-            tabPage1.Size = new Size(1033, 497);
+            tabPage1.Size = new Size(1033, 459);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -97,7 +96,7 @@
             tabPage2.Margin = new Padding(4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(4);
-            tabPage2.Size = new Size(1033, 503);
+            tabPage2.Size = new Size(1033, 465);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -148,6 +147,7 @@
             updateToolStripMenuItem.Name = "updateToolStripMenuItem";
             updateToolStripMenuItem.Size = new Size(118, 22);
             updateToolStripMenuItem.Text = "update";
+            updateToolStripMenuItem.Click += updateToolStripMenuItem_Click;
             // 
             // itemsToolStripMenuItem
             // 
@@ -236,14 +236,14 @@
             // createToolStripMenuItem4
             // 
             createToolStripMenuItem4.Name = "createToolStripMenuItem4";
-            createToolStripMenuItem4.Size = new Size(180, 22);
+            createToolStripMenuItem4.Size = new Size(118, 22);
             createToolStripMenuItem4.Text = "create";
             createToolStripMenuItem4.Click += createToolStripMenuItem4_Click;
             // 
             // updateToolStripMenuItem4
             // 
             updateToolStripMenuItem4.Name = "updateToolStripMenuItem4";
-            updateToolStripMenuItem4.Size = new Size(180, 22);
+            updateToolStripMenuItem4.Size = new Size(118, 22);
             updateToolStripMenuItem4.Text = "update";
             updateToolStripMenuItem4.Click += updateToolStripMenuItem4_Click;
             // 
@@ -258,7 +258,7 @@
             // 
             supplyPermitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem5, updateToolStripMenuItem5 });
             supplyPermitToolStripMenuItem.Name = "supplyPermitToolStripMenuItem";
-            supplyPermitToolStripMenuItem.Size = new Size(172, 22);
+            supplyPermitToolStripMenuItem.Size = new Size(180, 22);
             supplyPermitToolStripMenuItem.Text = "Su&pply Permit";
             // 
             // createToolStripMenuItem5
@@ -266,30 +266,33 @@
             createToolStripMenuItem5.Name = "createToolStripMenuItem5";
             createToolStripMenuItem5.Size = new Size(118, 22);
             createToolStripMenuItem5.Text = "create";
+            createToolStripMenuItem5.Click += createToolStripMenuItem5_Click;
             // 
             // updateToolStripMenuItem5
             // 
             updateToolStripMenuItem5.Name = "updateToolStripMenuItem5";
             updateToolStripMenuItem5.Size = new Size(118, 22);
             updateToolStripMenuItem5.Text = "update";
+            updateToolStripMenuItem5.Click += updateToolStripMenuItem5_Click;
             // 
             // releasePermitToolStripMenuItem
             // 
             releasePermitToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem6, updateToolStripMenuItem6 });
             releasePermitToolStripMenuItem.Name = "releasePermitToolStripMenuItem";
-            releasePermitToolStripMenuItem.Size = new Size(172, 22);
+            releasePermitToolStripMenuItem.Size = new Size(180, 22);
             releasePermitToolStripMenuItem.Text = "&Release Permit";
             // 
             // createToolStripMenuItem6
             // 
             createToolStripMenuItem6.Name = "createToolStripMenuItem6";
-            createToolStripMenuItem6.Size = new Size(118, 22);
+            createToolStripMenuItem6.Size = new Size(180, 22);
             createToolStripMenuItem6.Text = "create";
+            createToolStripMenuItem6.Click += createToolStripMenuItem6_Click;
             // 
             // updateToolStripMenuItem6
             // 
             updateToolStripMenuItem6.Name = "updateToolStripMenuItem6";
-            updateToolStripMenuItem6.Size = new Size(118, 22);
+            updateToolStripMenuItem6.Size = new Size(180, 22);
             updateToolStripMenuItem6.Text = "update";
             // 
             // transferToolStripMenuItem

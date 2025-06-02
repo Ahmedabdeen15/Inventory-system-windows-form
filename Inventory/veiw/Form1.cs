@@ -91,5 +91,30 @@ namespace Inventory
             CustomerUpdate customerUpdate = new CustomerUpdate(dbContext);
             var confirmResult = customerUpdate.ShowDialog();
         }
+
+
+
+
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException("Update functionality is not implemented yet.");
+        }
+        private void createToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            SupplyItem supplyItem = new SupplyItem(dbContext);
+            var confirmResult = supplyItem.ShowDialog();
+        }
+
+        private void updateToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            SupplyItemUpdate supplyItemUpdate = new SupplyItemUpdate(dbContext);
+            var confirmResult = supplyItemUpdate.ShowDialog();
+        }
+
+        private void createToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
