@@ -20,5 +20,7 @@ namespace Inventory.data
         [Required]
         public Employee manger { get; set; }
 
+        public List<WarehouseItem> warehouseItems { get; set; } = new List<WarehouseItem>();
+
     }
 }

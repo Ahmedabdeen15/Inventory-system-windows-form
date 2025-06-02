@@ -27,5 +27,7 @@ namespace Inventory.data
 
         public Unit Unit { get; set; }
 
+        public List<SuppliedItem> suppliedItems { get; set; } = new List<SuppliedItem>();
+
     }
 }
