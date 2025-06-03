@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Inventory.data
 {
@@ -21,6 +16,11 @@ namespace Inventory.data
         public Employee manger { get; set; }
 
         public List<WarehouseItem> warehouseItems { get; set; } = new List<WarehouseItem>();
+
+        public List<supplyPermit> supplyPermits
+        {
+            get; set;
+        } = new List<supplyPermit>();
 
     }
 }
