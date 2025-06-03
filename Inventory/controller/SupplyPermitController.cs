@@ -231,6 +231,19 @@ namespace Inventory.controller
             };
             suppliedItems.Add(suppliedItem);
         }
+        public void addSupplyItemPermit(WarehouseItem item ,float quntity)
+        {
+           
+            SuppliedItem suppliedItem = new SuppliedItem()
+            {
+                quntity = quntity,
+                ProudctionDate = item.productionDate,
+                ExpirationDays = (item.productionDate - item.ExpirationDate).Days,
+                Item = item.Item,
+                Unit = item.Unit
+            };
+            suppliedItems.Add(suppliedItem);
+        }
         public void updateSupplyItemPermit(int id, float quntity, DateTime ProudctionDate,
             int ExpirationDays, Item Item, Unit Unit)
         {
