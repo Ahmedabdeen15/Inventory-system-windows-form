@@ -238,7 +238,7 @@ namespace Inventory.controller
             {
                 quntity = quntity,
                 ProudctionDate = item.productionDate,
-                ExpirationDays = (item.productionDate - item.ExpirationDate).Days,
+                ExpirationDays = (item.ExpirationDate - item.productionDate).Days,
                 Item = item.Item,
                 Unit = item.Unit
             };
