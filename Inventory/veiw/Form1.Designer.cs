@@ -294,6 +294,7 @@
             updateToolStripMenuItem6.Name = "updateToolStripMenuItem6";
             updateToolStripMenuItem6.Size = new Size(180, 22);
             updateToolStripMenuItem6.Text = "update";
+            updateToolStripMenuItem6.Click += updateToolStripMenuItem6_Click;
             // 
             // transferToolStripMenuItem
             // 

@@ -114,7 +114,14 @@ namespace Inventory
 
         private void createToolStripMenuItem6_Click(object sender, EventArgs e)
         {
+            ReleaseItem releaseItem = new ReleaseItem(dbContext);
+            var confirmResult = releaseItem.ShowDialog();
+        }
 
+        private void updateToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            UpdateReleaseItem updateReleaseItem = new UpdateReleaseItem(dbContext);
+            var confirmResult = updateReleaseItem.ShowDialog();
         }
     }
 }
