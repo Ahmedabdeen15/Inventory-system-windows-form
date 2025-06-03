@@ -15,7 +15,7 @@ namespace Inventory.data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source= .\\SQLEXPRESS; initial catalog = inv ; integrated security = true ; TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Data Source= .\\SQLEXPRESS; initial catalog = inventory ; integrated security = true ; TrustServerCertificate=True;");
         }
         public DbSet<Customer> customers { get; set; }
         public DbSet<Employee> employees { get; set; }
