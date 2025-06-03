@@ -16,7 +16,6 @@ namespace Inventory.data
 
         public float quntity { get; set; }
 
-        //problem here
         public DateTime productionDate { get; set; }
 
         public DateTime ExpirationDate { get; set; }
