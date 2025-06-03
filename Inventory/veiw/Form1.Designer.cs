@@ -301,6 +301,7 @@
             transferToolStripMenuItem.Name = "transferToolStripMenuItem";
             transferToolStripMenuItem.Size = new Size(75, 19);
             transferToolStripMenuItem.Text = "&Transfer";
+            transferToolStripMenuItem.Click += transferToolStripMenuItem_Click;
             // 
             // employeesToolStripMenuItem
             // 

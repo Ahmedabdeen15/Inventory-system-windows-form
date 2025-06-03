@@ -123,5 +123,11 @@ namespace Inventory
             UpdateReleaseItem updateReleaseItem = new UpdateReleaseItem(dbContext);
             var confirmResult = updateReleaseItem.ShowDialog();
         }
+
+        private void transferToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TransferItem transferItem = new TransferItem(dbContext);
+            var confirmResult = transferItem.ShowDialog();
+        }
     }
 }
