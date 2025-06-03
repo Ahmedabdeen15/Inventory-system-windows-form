@@ -1,19 +1,57 @@
+using Inventory.controller;
 using Inventory.data;
 using Inventory.veiw;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Inventory
 {
     public partial class Form1 : Form
     {
         InventoryDbContext dbContext;
+        WarehouseControl warehouseControl;
+        bool CheckdateTimePicker1 = false;
+        bool CheckdateTimePicker2 = false;
+        ItemController itemControl;
+        int? Item;
+        List<int>? warehouseIds;
+        PermitQueryController permitQueryController;
         public Form1()
         {
             InitializeComponent();
             this.MainMenuStrip = menuStrip1;
             dbContext = new InventoryDbContext();
+            warehouseControl = new WarehouseControl(dbContext);
+            WarehouseItemsTable();
+            itemControl = new ItemController(dbContext);
+            updateComboBoxView2();
+            PopulateWarehouseCheckList();
+            view2Table();
+            permitQueryController = new PermitQueryController(dbContext);
+            updateComboBoxView3();
+            PopulateWarehouseCheckList2();
+            view3table();
+            updateComboBoxView4();
+        }
+        void updateComboBoxView2()
+        {
+            comboBox1.DataSource = itemControl.getAllItems();
+            comboBox1.DisplayMember = "Name";
+            comboBox1.ValueMember = "ItemId";
+        }
+        void updateComboBoxView3()
+        {
+            comboBox2.DataSource = itemControl.getAllItems();
+            comboBox2.DisplayMember = "Name";
+            comboBox2.ValueMember = "ItemId";
         }
 
+        void updateComboBoxView4()
+        {
+            var warehouses = dbContext.warehouses
+                                .ToList();
+            comboBox3.DataSource = warehouses;
+            comboBox3.DisplayMember = "Name";
+            comboBox3.ValueMember = "WarehouseID";
+        }
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
             warehouse_insert warehouseInsert = new warehouse_insert(dbContext);
@@ -98,7 +136,8 @@ namespace Inventory
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException("Update functionality is not implemented yet.");
+            warehouse_update warehouseUpdate = new warehouse_update(dbContext);
+            var confirmResult = warehouseUpdate.ShowDialog();
         }
         private void createToolStripMenuItem5_Click(object sender, EventArgs e)
         {
@@ -128,6 +167,232 @@ namespace Inventory
         {
             TransferItem transferItem = new TransferItem(dbContext);
             var confirmResult = transferItem.ShowDialog();
+        }
+        private void WarehouseItemsTable()
+        {
+            try
+            {
+                if (!CheckdateTimePicker1 && !CheckdateTimePicker2)
+                {
+                    var items = warehouseControl.getAllWarehousesItem();
+                    dataGridView1.DataSource = items;
+                }
+                else
+                {
+                    var items = warehouseControl.getAllWarehousesItem(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+                    dataGridView1.DataSource = items;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+        private void view2Table()
+        {
+            try
+            {
+                var items = warehouseControl.getAllWarehousesItem(warehouseIds: warehouseIds, itemId: Item, dateTimePicker3.Value.Date, dateTimePicker4.Value.Date);
+                dataGridView2.DataSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            CheckdateTimePicker1 = true;
+            WarehouseItemsTable();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            CheckdateTimePicker2 = true;
+            WarehouseItemsTable();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CheckdateTimePicker1 = CheckdateTimePicker2 = false;
+            WarehouseItemsTable();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (comboBox1.SelectedItem != null)
+            {
+                Item = ((Item)comboBox1.SelectedItem).ItemId;
+                view2Table();
+            }
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            updateComboBoxView2();
+            PopulateWarehouseCheckList();
+            view2Table();
+        }
+        private void PopulateWarehouseCheckList()
+        {
+            checkedListBox1.Items.Clear();
+
+            var warehouses = dbContext.warehouses
+                .Select(w => new
+                {
+                    w.WarehouseID,
+                    w.Name
+                })
+                .ToList();
+
+            checkedListBox1.DisplayMember = "Name";
+            checkedListBox1.ValueMember = "WarehouseID";
+
+            foreach (var warehouse in warehouses)
+            {
+                checkedListBox1.Items.Add(warehouse);
+            }
+
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+            }
+        }
+        private void PopulateWarehouseCheckList2()
+        {
+            checkedListBox2.Items.Clear();
+
+            var warehouses = dbContext.warehouses
+                .Select(w => new
+                {
+                    w.WarehouseID,
+                    w.Name
+                })
+                .ToList();
+
+            checkedListBox2.DisplayMember = "Name";
+            checkedListBox2.ValueMember = "WarehouseID";
+
+            foreach (var warehouse in warehouses)
+            {
+                checkedListBox2.Items.Add(warehouse);
+            }
+
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+                checkedListBox2.SetItemChecked(i, true);
+            }
+        }
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            warehouseIds = new List<int>();
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (checkedListBox1.GetItemChecked(i))
+                {
+                    dynamic item = checkedListBox1.Items[i];
+                    warehouseIds.Add(item.WarehouseID);
+                }
+            }
+            view2Table();
+        }
+
+        private void dateTimePicker4_ValueChanged(object sender, EventArgs e)
+        {
+            view2Table();
+        }
+
+        private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
+        {
+            view2Table();
+        }
+        void view3table()
+        {
+            try
+            {
+                var items = permitQueryController.GetItemMovementHistory(warehouseIds: warehouseIds, itemId: Item ?? 0);
+                dataGridView3.DataSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedItem != null)
+            {
+                Item = ((Item)comboBox2.SelectedItem).ItemId;
+                view3table();
+            }
+        }
+
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            warehouseIds = new List<int>();
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+                if (checkedListBox2.GetItemChecked(i))
+                {
+                    dynamic item = checkedListBox2.Items[i];
+                    warehouseIds.Add(item.WarehouseID);
+                }
+            }
+            view3table();
+        }
+        private void view4Table()
+        {
+            try
+            {
+                int warehouseId = ((Warehouse)comboBox3.SelectedItem).WarehouseID;
+                if (comboBox3.SelectedItem == null || warehouseId == 0)
+                {
+                    MessageBox.Show("Please select at least one warehouse.");
+                    return;
+                }
+                int interval;
+                if (!int.TryParse(textBox1.Text, out interval) || interval <= 0)
+                {
+                    MessageBox.Show("Please enter a valid age in days.");
+                    return;
+                }
+                var items = permitQueryController.GetItemsBySupplyAge(interval, warehouseId);
+                dataGridView4.DataSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            view4Table();
+        }
+        private void view5Table()
+        {
+            try
+            {
+                int interval;
+                if (!int.TryParse(textBox2.Text, out interval) || interval <= 0)
+                {
+                    MessageBox.Show("Please enter a valid age in days.");
+                    return;
+                }
+                var items = warehouseControl.GetItemsExpiringSoonAllWarehouses(interval);
+                dataGridView5.DataSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading items: " + ex.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            view5Table();
         }
     }
 }
