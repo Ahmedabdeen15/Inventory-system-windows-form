@@ -19,6 +19,7 @@ namespace Inventory
             InitializeComponent();
             this.MainMenuStrip = menuStrip1;
             dbContext = new InventoryDbContext();
+            dbContext.Database.EnsureCreated();
             warehouseControl = new WarehouseControl(dbContext);
             WarehouseItemsTable();
             itemControl = new ItemController(dbContext);
