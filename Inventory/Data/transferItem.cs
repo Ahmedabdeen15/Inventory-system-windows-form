@@ -16,28 +16,7 @@ namespace Inventory.data
 
         public float quntity { get; set; }
 
-        public DateTime ProudctionDate { get; set; }
-
-        public DateTime ExpirationDate { get; set; }
-
-        [NotMapped]
-        public int ExpirationDays
-        {
-            set
-            {
-                ExpirationDate = ProudctionDate.AddDays(value);
-                ExpirationDays = value;
-            }
-            get
-            {
-                return ExpirationDays;
-            }
-        }
-
-        public Item Item { get; set; }
-
-
-        public Unit Unit { get; set; }
+       public WarehouseItem warehouseItem { get; set; }
 
         public Supplier supplier { get; set; }
 
