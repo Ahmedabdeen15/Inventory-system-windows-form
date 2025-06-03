@@ -19,8 +19,10 @@ namespace Inventory.data
 
         public string permitNumber { get; set; }
 
-        public Supplier Supplier { get; set; }
+        public Customer Customer { get; set; }
 
         public Warehouse Warehouse { get; set; }
+
+        public List<releasedItem> releasedItems { get; set; } = new List<releasedItem>();
     }
 }

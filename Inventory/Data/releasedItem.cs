@@ -16,13 +16,7 @@ namespace Inventory.data
 
         public float quntity { get; set; }
 
-        public DateTime ExpirationDate { get; set; }
-
-
-        public Item Item { get; set; }
-
-
-        public Unit Unit { get; set; }
+        public WarehouseItem warehouseItem { get; set; }
 
         public ReleasePermit ReleasePermit { get; set; }
     }
