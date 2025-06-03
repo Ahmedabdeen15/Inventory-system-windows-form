@@ -354,17 +354,8 @@ namespace Inventory.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("FromWarehouseWarehouseID")
                         .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ProudctionDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("SupplierID")
                         .HasColumnType("int");
@@ -372,23 +363,21 @@ namespace Inventory.Migrations
                     b.Property<int>("ToWarehouseWarehouseID")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitId")
-                        .HasColumnType("int");
-
                     b.Property<float>("quntity")
                         .HasColumnType("real");
+
+                    b.Property<int>("warehouseItemId")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("FromWarehouseWarehouseID");
 
-                    b.HasIndex("ItemId");
-
                     b.HasIndex("SupplierID");
 
                     b.HasIndex("ToWarehouseWarehouseID");
 
-                    b.HasIndex("UnitId");
+                    b.HasIndex("warehouseItemId");
 
                     b.ToTable("transfer_Items");
                 });
@@ -503,7 +492,7 @@ namespace Inventory.Migrations
             modelBuilder.Entity("Inventory.data.releasedItem", b =>
                 {
                     b.HasOne("Inventory.data.ReleasePermit", "ReleasePermit")
-                        .WithMany()
+                        .WithMany("releasedItems")
                         .HasForeignKey("ReleasePermitPermitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -528,7 +517,7 @@ namespace Inventory.Migrations
                         .IsRequired();
 
                     b.HasOne("Inventory.data.Warehouse", "Warehouse")
-                        .WithMany()
+                        .WithMany("supplyPermits")
                         .HasForeignKey("WarehouseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -546,12 +535,6 @@ namespace Inventory.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Inventory.data.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Inventory.data.Supplier", "supplier")
                         .WithMany()
                         .HasForeignKey("SupplierID")
@@ -564,21 +547,19 @@ namespace Inventory.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Inventory.data.Unit", "Unit")
+                    b.HasOne("Inventory.data.WarehouseItem", "warehouseItem")
                         .WithMany()
-                        .HasForeignKey("UnitId")
+                        .HasForeignKey("warehouseItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("FromWarehouse");
 
-                    b.Navigation("Item");
-
                     b.Navigation("ToWarehouse");
 
-                    b.Navigation("Unit");
-
                     b.Navigation("supplier");
+
+                    b.Navigation("warehouseItem");
                 });
 
             modelBuilder.Entity("ItemUnit", b =>
@@ -596,8 +577,15 @@ namespace Inventory.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Inventory.data.ReleasePermit", b =>
+                {
+                    b.Navigation("releasedItems");
+                });
+
             modelBuilder.Entity("Inventory.data.Warehouse", b =>
                 {
+                    b.Navigation("supplyPermits");
+
                     b.Navigation("warehouseItems");
                 });
 
