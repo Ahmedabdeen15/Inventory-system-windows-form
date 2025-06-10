@@ -21,6 +21,7 @@ namespace Inventory
             dbContext = new InventoryDbContext();
             dbContext.Database.EnsureCreated();
             warehouseControl = new WarehouseControl(dbContext);
+            updateComboBoxView1();
             WarehouseItemsTable();
             itemControl = new ItemController(dbContext);
             updateComboBoxView2();
@@ -52,6 +53,13 @@ namespace Inventory
             comboBox3.DataSource = warehouses;
             comboBox3.DisplayMember = "Name";
             comboBox3.ValueMember = "WarehouseID";
+        }
+        void updateComboBoxView1()
+        {
+            var warehouses = warehouseControl.getAllWarehouses();
+            comboBox4.DataSource = warehouses;
+            comboBox4.DisplayMember = "Name";
+            comboBox4.ValueMember = "WarehouseID";
         }
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -173,14 +181,20 @@ namespace Inventory
         {
             try
             {
+                if (comboBox4.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a warehouse.");
+                    return;
+                }
+                int warehouseId = ((Warehouse)comboBox4.SelectedItem).WarehouseID;
                 if (!CheckdateTimePicker1 && !CheckdateTimePicker2)
                 {
-                    var items = warehouseControl.getAllWarehousesItem();
+                    var items = warehouseControl.getItemsInWarehousesById(warehouseId);
                     dataGridView1.DataSource = items;
                 }
                 else
                 {
-                    var items = warehouseControl.getAllWarehousesItem(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+                    var items = warehouseControl.getItemsInWarehousesById(warehouseId, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
                     dataGridView1.DataSource = items;
                 }
             }
@@ -394,6 +408,17 @@ namespace Inventory
         private void button4_Click(object sender, EventArgs e)
         {
             view5Table();
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WarehouseItemsTable();
+        }
+
+        private void tabPage1_Enter(object sender, EventArgs e)
+        {
+            WarehouseItemsTable();
+            updateComboBoxView1();
         }
     }
 }

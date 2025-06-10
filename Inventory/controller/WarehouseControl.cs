@@ -54,6 +54,25 @@ namespace Inventory.controller
             }
             return warehouse;
         }
+        public List<dynamic> getItemsInWarehousesById(int warehouseID, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            // TODO: Implement this method to return items in a specific warehouse by its ID with their details and filter date range
+            var query = (from w in inventoryDb.warehouses
+                         from i in w.warehouseItems
+                         where (!fromDate.HasValue || i.productionDate >= fromDate.Value) 
+                         && (!toDate.HasValue || i.productionDate <= toDate.Value)
+                         && i.quntity > 0
+                         && w.WarehouseID == warehouseID
+                         select new
+                         {
+                             warehouse_name = w.Name,
+                             ItemName = i.Item.Name,
+                             quntity = i.quntity.ToString() + " " + i.Unit.Name,
+                             productionDate = i.productionDate.ToString("yyyy-MM-dd"),
+                             ExpirationDate = i.ExpirationDate.ToString("yyyy-MM-dd")
+                         }).Cast<dynamic>().ToList();
+            return query;
+        }
         public List<Warehouse> getAllWarehouses()
         {
             return inventoryDb.warehouses.ToList();
